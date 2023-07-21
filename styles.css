@@ -12,7 +12,40 @@ body {
 }
 
 :root {
+    --gap: 1rem;
     font-size: 62.5%;
+}
+
+.purple {
+    background-color: #EBDCEC;
+}
+
+.dark-purple {
+    background-color: #7B2481;
+}
+
+.orange {
+    background-color: #FCEAD9;
+}
+
+.dark-orange {
+    background-color: #E97200;
+}
+
+.blue {
+    background-color: #E0E8F5;
+}
+
+.dark-blue {
+    background-color: #0070CD;
+}
+
+.green {
+    background-color: #D8EEE5;
+}
+
+.dark-green {
+    background-color: #00945D;
 }
 
 
@@ -83,22 +116,57 @@ body {
     color: #666666;
 }
 
-@media (max-width:1050px) {
-    #strength2 {
-        display: none;
-    }
-}
-
 /* # Strengths container */
 #strengths-container {
-    padding: 1rem;
+    padding: var(--gap);
     width: 100%;
     height: 100%;
     overflow-x: scroll;
 }
 
 #scrolling-grid {
+    display: grid;
+    grid-template-rows: auto 1rem auto 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
     height: 100%;
-    width: 250vw;
-    background: linear-gradient(90deg, rgba(0, 206, 1, 1) 0%, rgba(127, 231, 25, 1) 25%, rgba(254, 255, 48, 1) 50%, rgba(254, 128, 24, 1) 75%, rgba(254, 0, 0, 1) 100%);
+}
+
+#scrolling-grid h1 {
+    margin: 0.5rem 0;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+.grid-squares {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: var(--gap);
+    min-width: 30rem;
+}
+
+.grid-squares>div {
+    background-color: orange;
+}
+
+.grid-squares>div::before {
+    content: "";
+    padding-bottom: 100%;
+    display: block;
+}
+
+@media (max-width:1050px) {
+    #page-grid {
+        grid-template-rows: auto 25rem 1fr;
+    }
+
+    #strength2 {
+        display: none;
+    }
+
+    .grid-squares {
+        grid-template-columns: 1fr 1fr;
+    }
 }
