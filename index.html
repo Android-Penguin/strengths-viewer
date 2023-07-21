@@ -45,16 +45,24 @@
                 <h1>EXECUTING</h1>
                 <h1>INFLUENCING</h1>
                 <h1>RELATIONSHIP BUILDING</h1>
-                <h1>STRATEGIC THINKING</h1>
+                <h1 class="margin-extra">STRATEGIC THINKING</h1>
                 <div class="dark-purple"></div>
                 <div class="dark-orange"></div>
                 <div class="dark-blue"></div>
-                <div class="dark-green"></div>
+                <div class="dark-green margin-extra"></div>
 
-                <div id="executing-strengths" class="grid-squares"></div>
-                <div id="influencing-strengths" class="grid-squares"></div>
-                <div id="relationship-strengths" class="grid-squares"></div>
-                <div id="strategic-strengths" class="grid-squares"></div>
+                <div>
+                    <div id="executing-strengths" class="grid-squares"></div>
+                </div>
+                <div>
+                    <div id="influencing-strengths" class="grid-squares even"></div>
+                </div>
+                <div>
+                    <div id="relationship-strengths" class="grid-squares"></div>
+                </div>
+                <div class="margin-extra">
+                    <div id="strategic-strengths" class="grid-squares even"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -69,8 +77,19 @@
     <script>
         const items = document.getElementsByClassName("grid-squares")
         for (item of items) {
-            for(i=0; i<8; i++) {
+            var iterations
+            if (item.classList.contains("even")) {
+                iterations = 8
+            } else {
+                iterations = 9
+            }
+            for(i=0; i<iterations; i++) {
                 var div = document.createElement("div")
+                var innerDiv = document.createElement("div")
+                var text = document.createElement("span")
+                text.innerHTML = i
+                innerDiv.appendChild(text)
+                div.appendChild(innerDiv)
                 item.appendChild(div);
             }
         }
