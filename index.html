@@ -16,7 +16,7 @@
         <!-- Nav bar -->
         <div id="nav">
             <span>Strengths Viewer</span>
-            <span><a href="https://www.gallup.com/cliftonstrengths/en/253715/34-cliftonstrengths-themes.aspx" target="_blank" rel="noopener noreferrer"">SOURCE</a></span>
+            <span><a href="https://www.gallup.com/cliftonstrengths/en/253715/34-cliftonstrengths-themes.aspx" target="_blank" rel="noopener noreferrer">SOURCE</a></span>
         </div>
 
         <!-- Explanation viewer -->
@@ -27,6 +27,7 @@
                     <h2>Strength title</h2>
                     <span>Subtitle</span>
                     <p>long description yes</p>
+                    <a href="" target="_blank" rel="noopener noreferrer">Learn more</a>
                 </div>
             </div>
             <div id="strength2" class="description-container">
@@ -35,6 +36,7 @@
                     <h2>Strength title</h2>
                     <span>Subtitle</span>
                     <p>long description yes</p>
+                    <a href="" target="_blank" rel="noopener noreferrer">Learn more</a>
                 </div>
             </div>
         </div>
@@ -73,26 +75,93 @@
 
 
     <!-- TODO: Add link to dropbox array -->
-    <script></script>
+    <!-- Strengths arrays -->
+    <script src="https://dl.dropboxusercontent.com/scl/fi/z7ny4whgvap17q4d7gbkj/strengths.js?rlkey=tp054x6f2xlrmvdb8cwcsw2en"></script>
     <script>
-        const items = document.getElementsByClassName("grid-squares")
-        for (item of items) {
-            var iterations
-            if (item.classList.contains("even")) {
-                iterations = 8
-            } else {
-                iterations = 9
-            }
-            for(i=0; i<iterations; i++) {
-                var div = document.createElement("div")
-                var innerDiv = document.createElement("div")
-                var text = document.createElement("span")
-                text.innerHTML = i
-                innerDiv.appendChild(text)
-                div.appendChild(innerDiv)
-                item.appendChild(div);
+        const executingContainer = document.getElementById("executing-strengths")
+        const influencingContainer = document.getElementById("influencing-strengths")
+        const relationshipContainer = document.getElementById("relationship-strengths")
+        const strategicContainer = document.getElementById("strategic-strengths")
+
+        // Get container
+        function getContainer(selector) {
+            switch(selector) {
+                case 0: return(executingContainer)
+                case 1: return(influencingContainer) 
+                case 2: return(relationshipContainer)
+                case 3: return(strategicContainer)
             }
         }
+
+        // Get array
+        function getArray(selector) {
+            switch(selector) {
+                case 0: return(executingStrengths)
+                case 1: return(influencingStrengths) 
+                case 2: return(relationshipStrengths)
+                case 3: return(strategicStrengths)
+            }
+        }
+
+        // Get category name
+        function getCategoryName(selector) {
+            switch(selector) {
+                case 0: return("EXECUTING")
+                case 1: return("INFLUENCING") 
+                case 2: return("RELATIONSHIP BUILDING")
+                case 3: return("STRATEGIC THINKING")
+            }
+        }
+
+        for (let category = 0; category<4; category++) {
+            for (let i=0; i<getArray(category).length; i++) {
+                var strengthItem = document.createElement("div")
+                var innerDiv = document.createElement("div")
+                var text = document.createElement("span")
+                strengthItem.setAttribute("onclick", "viewStrength(" + category + ", " + i + ")")
+                text.innerHTML = getArray(category)[i].id
+                innerDiv.appendChild(text)
+                strengthItem.appendChild(innerDiv)
+                getContainer(category).appendChild(strengthItem)
+            }
+        }
+
+        // Switch viewer
+        var left = false
+        function switchViewer() {
+            if(window.innerWidth <= 1050) {
+                left = true
+            } else {
+                left = !left
+            }
+        }
+        // Return viewer
+        const viewer1 = document.getElementById("strength1");
+        const viewer2 = document.getElementById("strength2");
+        function getViewer() {
+            switchViewer()
+            return( left ? viewer1:viewer2 )
+        }
+
+        // On click function
+        function viewStrength(category, index) {
+            let strength = getArray(category)[index]
+            let viewer = getViewer()
+            let textDiv = viewer.childNodes[3]
+
+            // console.log(strength.id, viewer.id)
+            // Set title
+            textDiv.childNodes[1].innerHTML = strength.id
+            // Set category
+            textDiv.childNodes[3].innerHTML = getCategoryName(category)
+            // Set description
+            textDiv.childNodes[5].innerHTML = strength.p
+            // Set link
+            textDiv.childNodes[7].setAttribute("href", strength.url)
+
+            // console.log(textDiv.childNodes)
+        }
+
     </script>
 </body>
 
