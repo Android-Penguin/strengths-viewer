@@ -103,6 +103,7 @@ body {
     max-width: 50rem;
     height: 20rem;
     background-color: white;
+    box-shadow: 5px 5px 10px lightgray;
 }
 
 .description-container>div:first-child {
@@ -257,6 +258,7 @@ body {
 @media (max-width:1050px) {
     #page-grid {
         grid-template-rows: auto 25rem 1fr;
+        height: 90vh;
     }
 
     #strength2 {
