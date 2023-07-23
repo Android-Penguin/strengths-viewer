@@ -277,9 +277,14 @@ body {
         font-size: 1.3rem;
     }
 
+    #scrolling-grid h1 {
+        font-size: 1.8rem;
+    }
+
     .grid-squares {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        min-width: 25rem;
     }
 
     .grid-squares.even {
@@ -288,10 +293,10 @@ body {
     }
 
     .grid-squares>div::before {
-        padding-bottom: 60%;
+        padding-bottom: 50%;
     }
 
     .grid-squares>div>div>span {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 }

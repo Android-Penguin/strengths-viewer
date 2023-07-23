@@ -148,7 +148,7 @@
                 left = !left
             }
         }
-        // Return viewer
+        // Return viewer element
         const viewer1 = document.getElementById("strength1");
         const viewer2 = document.getElementById("strength2");
         function getViewer() {
@@ -163,7 +163,7 @@
             let viewer = getViewer()
             let textDiv = viewer.childNodes[3]
             let previousItem = document.getElementsByClassName(viewer.id + "-grid")
-            
+
             // EDIT VIEWER
             // Animate
             if(doAnimate) {
