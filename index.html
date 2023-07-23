@@ -113,12 +113,23 @@
             }
         }
 
+        // Get class color
+        function getColor(selector, dark) {
+            switch(selector) {
+                case 0: return(dark ? "dark-purple":"purple")
+                case 1: return(dark ? "dark-orange":"orange")
+                case 2: return(dark ? "dark-blue":"blue")
+                case 3: return(dark ? "dark-green":"green")
+            }
+        }
+
         for (let category = 0; category<4; category++) {
             for (let i=0; i<getArray(category).length; i++) {
                 var strengthItem = document.createElement("div")
                 var innerDiv = document.createElement("div")
                 var text = document.createElement("span")
                 strengthItem.setAttribute("onclick", "viewStrength(" + category + ", " + i + ")")
+                strengthItem.classList.add(getColor(category, false))
                 text.innerHTML = getArray(category)[i].id
                 innerDiv.appendChild(text)
                 strengthItem.appendChild(innerDiv)
@@ -149,7 +160,9 @@
             let viewer = getViewer()
             let textDiv = viewer.childNodes[3]
 
-            // console.log(strength.id, viewer.id)
+            // Set bar color
+            viewer.childNodes[1].className = ""
+            viewer.childNodes[1].classList.add(getColor(category,true))
             // Set title
             textDiv.childNodes[1].innerHTML = strength.id
             // Set category
@@ -159,7 +172,6 @@
             // Set link
             textDiv.childNodes[7].setAttribute("href", strength.url)
 
-            // console.log(textDiv.childNodes)
         }
 
     </script>

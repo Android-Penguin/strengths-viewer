@@ -101,7 +101,7 @@ body {
 }
 
 .color-bar {
-    background-color: pink;
+    background-color: grey;
 }
 
 .text-contents {
@@ -157,7 +157,7 @@ body {
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
-    background-color: orange;
+    cursor: pointer;
 }
 
 .grid-squares>div>div {
@@ -168,6 +168,9 @@ body {
 .grid-squares>div>div>span {
     text-align: center;
     font-size: 1.3rem;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .grid-squares>div::before {
