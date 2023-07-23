@@ -97,6 +97,7 @@ body {
 .description-container {
     display: grid;
     grid-template-columns: 1rem 1fr;
+    grid-template-rows: 1fr;
     margin: 2.5rem;
     width: 100%;
     max-width: 50rem;
@@ -104,23 +105,65 @@ body {
     background-color: white;
 }
 
+.description-container>div:first-child {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
 .color-bar {
     background-color: grey;
 }
 
 .text-contents {
+    display: flex;
+    flex-direction: column;
+    grid-area: 1 / 2 / 2 / 3;
     padding: 1rem;
 }
 
 .text-contents h2 {
     margin: 0 0 1.2rem 0;
     font-weight: 400;
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 .text-contents span {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: #666666;
+}
+
+.text-contents p {
+    margin: 1.2 0 0 0;
+    font-size: 1.4rem;
+}
+
+.text-contents a {
+    margin-top: auto;
+    padding: 0.5rem 0;
+}
+
+
+.description-container>div:nth-child(3) {
+    grid-area: 1 / 1 / 2 / 3;
+    pointer-events: none;
+    background: rgba(241, 241, 241, 0);
+    background: linear-gradient(90deg, rgba(241, 241, 241, 0) 0%, rgba(241, 241, 241, 0) 50%, rgba(241, 241, 241, 1) 50%, rgba(241, 241, 241, 1) 100%);
+    background-size: 200% 100%;
+}
+
+.animate {
+    animation-name: wipe;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes wipe {
+    from {
+        background-position: 100% 0%;
+    }
+
+    to {
+        background-position: 0% 0%;
+    }
 }
 
 /* # Strengths container */
@@ -187,7 +230,8 @@ body {
 
 .grid-squares>div>div>span {
     text-align: center;
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
+    font-size: 0.9vw;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -219,6 +263,20 @@ body {
         display: none;
     }
 
+    .text-contents h2 {
+        margin: 0 0 1rem 0;
+        font-size: 2rem;
+    }
+
+    .text-contents span {
+        font-size: 1.4rem;
+    }
+
+    .text-contents p {
+        margin: 1rem 0 0 0;
+        font-size: 1.3rem;
+    }
+
     .grid-squares {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -227,5 +285,13 @@ body {
     .grid-squares.even {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+    .grid-squares>div::before {
+        padding-bottom: 60%;
+    }
+
+    .grid-squares>div>div>span {
+        font-size: 1.8rem;
     }
 }

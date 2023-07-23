@@ -24,20 +24,22 @@
             <div id="strength1" class="description-container">
                 <div id="color1" class="color-bar"></div>
                 <div class="text-contents">
-                    <h2>Strength title</h2>
-                    <span>Subtitle</span>
-                    <p>long description yes</p>
+                    <h2>Strength One</h2>
+                    <span>CATEGORY</span>
+                    <p>Select a strength from the grid to view its description</p>
                     <a href="" target="_blank" rel="noopener noreferrer">Learn more</a>
                 </div>
+                <div id="strength1-curtain" class="curtain"></div>
             </div>
             <div id="strength2" class="description-container">
                 <div id="color2" class="color-bar"></div>
                 <div class="text-contents">
-                    <h2>Strength title</h2>
-                    <span>Subtitle</span>
-                    <p>long description yes</p>
+                    <h2>Strength Two</h2>
+                    <span>CATEGORY</span>
+                    <p>Select a second strength to compare descriptions</p>
                     <a href="" target="_blank" rel="noopener noreferrer">Learn more</a>
                 </div>
+                <div id="strength1-curtain" class="curtain"></div>
             </div>
         </div>
 
@@ -65,6 +67,7 @@
                 <div class="margin-extra">
                     <div id="strategic-strengths" class="grid-squares even"></div>
                 </div>
+                <a href="" onclick="toggleAnimations(event)">Toggle Animations</a>
             </div>
         </div>
     </div>
@@ -154,6 +157,7 @@
         }
 
         // On click function
+        var doAnimate = false
         function viewStrength(category, index, element) {
             let strength = getArray(category)[index]
             let viewer = getViewer()
@@ -161,7 +165,13 @@
             let previousItem = document.getElementsByClassName(viewer.id + "-grid")
             
             // EDIT VIEWER
-
+            // Start animation
+            viewer.childNodes[5].className = ""
+            setTimeout(function() {
+                if(doAnimate) {
+                    viewer.childNodes[5].classList.add("animate")
+                }
+            }, 1);
             // Set bar color
             viewer.childNodes[1].className = ""
             viewer.childNodes[1].classList.add(getColor(category,true))
@@ -177,13 +187,17 @@
             // EDIT GRID COLORS
             if(previousItem.length > 0) {
                 for (item of previousItem) {
-                    console.log(item.classList)
                     item.classList = ""
                 }
             }
-            element.classList = ""
+            element.className = ""
             element.classList.add(getColor(category,true))
             element.classList.add(viewer.id + "-grid")
+        }
+
+        function toggleAnimations(event) {
+            event.preventDefault();
+            doAnimate = !doAnimate
         }
 
     </script>
