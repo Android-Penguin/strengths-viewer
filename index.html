@@ -128,8 +128,7 @@
                 var strengthItem = document.createElement("div")
                 var innerDiv = document.createElement("div")
                 var text = document.createElement("span")
-                strengthItem.setAttribute("onclick", "viewStrength(" + category + ", " + i + ")")
-                strengthItem.classList.add(getColor(category, false))
+                strengthItem.setAttribute("onclick", "viewStrength(" + category + ", " + i + ", " + "this" + ")")
                 text.innerHTML = getArray(category)[i].id
                 innerDiv.appendChild(text)
                 strengthItem.appendChild(innerDiv)
@@ -155,10 +154,13 @@
         }
 
         // On click function
-        function viewStrength(category, index) {
+        function viewStrength(category, index, element) {
             let strength = getArray(category)[index]
             let viewer = getViewer()
             let textDiv = viewer.childNodes[3]
+            let previousItem = document.getElementsByClassName(viewer.id + "-grid")
+            
+            // EDIT VIEWER
 
             // Set bar color
             viewer.childNodes[1].className = ""
@@ -172,6 +174,16 @@
             // Set link
             textDiv.childNodes[7].setAttribute("href", strength.url)
 
+            // EDIT GRID COLORS
+            if(previousItem.length > 0) {
+                for (item of previousItem) {
+                    console.log(item.classList)
+                    item.classList = ""
+                }
+            }
+            element.classList = ""
+            element.classList.add(getColor(category,true))
+            element.classList.add(viewer.id + "-grid")
         }
 
     </script>
