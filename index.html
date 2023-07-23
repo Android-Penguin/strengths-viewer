@@ -165,13 +165,10 @@
             let previousItem = document.getElementsByClassName(viewer.id + "-grid")
             
             // EDIT VIEWER
-            // Start animation
-            viewer.childNodes[5].className = ""
-            setTimeout(function() {
-                if(doAnimate) {
-                    viewer.childNodes[5].classList.add("animate")
-                }
-            }, 1);
+            // Animate
+            if(doAnimate) {
+                viewer.childNodes[5].classList.add("animate")
+            }
             // Set bar color
             viewer.childNodes[1].className = ""
             viewer.childNodes[1].classList.add(getColor(category,true))
@@ -193,6 +190,13 @@
             element.className = ""
             element.classList.add(getColor(category,true))
             element.classList.add(viewer.id + "-grid")
+
+            // Remove animation class
+            setTimeout(function() {
+                if(doAnimate) {
+                    viewer.childNodes[5].classList.remove("animate")
+                }
+            }, 400);
         }
 
         function toggleAnimations(event) {
